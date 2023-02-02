@@ -1,15 +1,18 @@
-# pokemon game v0.4
-# 중복코드 제거, getter setter -> property ->decorator
-#__hiddenfield
+# pokemon game v0.5
+# getter setter -> property -> decorator
+# class field
+
 class Pokemon:
+    count = 0
     def __init__(self, owner, skills):
-        self.__hidden_owner = owner # like private
+        self.__hidden_owner = owner  # like private
         self.skills = skills.split('/')
         print(f"포켓몬 생성 :", end=' ')
+        Pokemon.count = Pokemon.count + 1
+
     @property
     def owner(self):
-        return self.hidden_owner
-
+        return self.__hidden_owner
 
     @owner.setter
     def owner(self, owner):
@@ -20,7 +23,7 @@ class Pokemon:
         for i in range(len(self.skills)):
             print(f'{i+1} : {self.skills[i]}')
 
-  #  owner = property(get_owner, set_owner)
+    #owner = property(get_owner, set_owner)
         # for skill in self.skills:
         #     print(f'{skill}')
 
@@ -35,7 +38,7 @@ class Pikachu(Pokemon):  # inheritance
         print(f"{self.name}")
 
     def attack(self, idx):  # override
-        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격(전기) 시전!')
+        print(f'[삐까삐까] {self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전!')
 
 
 class Ggoboogi(Pokemon):  # inheritance
@@ -45,7 +48,7 @@ class Ggoboogi(Pokemon):  # inheritance
         print(f"{self.name}")
 
     def attack(self, idx):  # override
-        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격(물) 시전!')
+        print(f'[꼬북꼬북] {self.owner}의 {self.name}가 {self.skills[idx]} 공격 시전!')
 
     def swim(self):
         print(f'{self.name}가 수영을 합니다')
@@ -58,10 +61,11 @@ class Pairi(Pokemon):  # inheritance
         print(f"{self.name}")
 
     def attack(self, idx):  # override
-        print(f'{self.owner}의 {self.name}가 {self.skills[idx]} 공격(불) 시전!')
+        print(f'[파읠파읠] {self.owner}의 {self.name}가 {self.skills[idx]} 공격(불) 시전!')
 
 
 while True:
+    print(f'총 {Pokemon.count}마리의 포켓몬이 생성되었습니다')
     menu = input('1) 포켓몬 생성  2) 프로그램 종료 : ')
     if menu == '2':
         print('프로그램을 종료합니다')
@@ -72,8 +76,8 @@ while True:
         s = input('사용 가능한 기술 입력(/로 구분하여 입력) :')
         if pokemon == '1':
             p = Pikachu(n, s)
-            # p.owner = "한지우" # setter
-            # p.hidden_owner = "한지우" #허가되지 않은 접근
+            # p.owner = "한지우"  # setter
+            # p.__hidden_owner = "한지우"  # 허가되지 않은 접근
         elif pokemon == '2':
             p = Ggoboogi(n, s)
         elif pokemon == '3':
