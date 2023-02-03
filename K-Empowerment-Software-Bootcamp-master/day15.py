@@ -1,38 +1,44 @@
-def find_and_insert_data(friend, K_count):
-    findPos = -1
-    for i in range(len(kakao)):
-        pair = kakao[i]
-        if K_count > pair[1]:  #pair는 숫자를 의미한다
-            findPos = i
-            break
-        if findPos == -1:
-            findPos = len(kakao)
-
-        insert_data(findPos, (friend, K_count))
+## 클래스와 함수 선언 부분 ##
+class Node() :
+	def __init__(self) :
+		self.data = None
+		self.link = None
 
 
-def insert_data(position, friend):
-    if position < 0 or position > len(kakao):
-        print("데이터 삽입 범위를 초과하였습니다.")
-        return
-
-    kakao.append(None)
-    kLen = len(kakao)
-
-    for i in range(kLen -1, position -1):
-        kakao[i] = kakao[i-1]
-        kakao[i-1] = None
-
-    kakao[position] = friend
+def print_nodes(start) :
+	current = start
+	if current == None :
+		return
+	print(current.data, end = ' ')
+	while current.link != None:
+		current = current.link  # 다음 노드로 이동
+		print(current.data, end=' ')
+	print()
 
 
-kakao = [('다현', 200),('정현',150),('쯔위', 90),('사나', 30),('지효',150)]
+## 전역 변수 선언 부분 ##
+memory = []
+head, current, pre = None, None, None
+dataArray = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해"]
 
 
-if __name__ == "__main__":
+## 메인 코드 부분 ##
+if __name__ == "__main__" :
 
-    while True:
-        data = input("추가할 친구 --> ")
-        count = int(input("카톡 횟수__> "))
-        find_and_insert_data(data, count)
-        print(kakao)
+	node = Node()		# 첫 번째 노드
+	node.data = dataArray[0]
+	head = node
+	memory.append(node)
+
+	for data in dataArray[1:] :	# 두 번째 이후 노드
+		pre = node
+		node = Node()
+		node.data = data
+		pre.link = node
+		memory.append(node)
+
+
+	print_nodes(head)
+
+    print(node.data)
+    print(pre.data)
