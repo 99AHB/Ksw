@@ -39,6 +39,3 @@ if __name__ == "__main__" :
 
 
 	print_nodes(head)
-
-    print(node.data)
-    print(pre.data)

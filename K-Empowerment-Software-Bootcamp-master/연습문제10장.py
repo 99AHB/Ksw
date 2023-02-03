@@ -22,18 +22,18 @@ import asyncio
 # print(A.letters)
 
 # EX04
-# class Element():
-#      def __init__(sc,name,symbol,number):
-#          sc.name=name
-#          sc.symbol=symbol
-#          sc.number=number
-# B = Element('Hydrogen','H',1)
-# print(B.name,B.symbol,B.number)
+class Element():
+     def __init__(sc,name,symbol,number):
+         sc.name=name
+         sc.symbol=symbol
+         sc.number=number
+B = Element('Hydrogen','H',1)
+print(B.name,B.symbol,B.number)
 #
-# # EX05
-# el_dict={'name' : 'Hydrogen', 'symbol' : 'H', 'number': 1 }
-# hydrogen=Element(el_dict['name'],el_dict['symbol'],el_dict['number'])
-# print(hydrogen.name)
+# EX05
+el_dict={'name' : 'Hydrogen', 'symbol' : 'H', 'number': 1 }
+hydrogen=Element(el_dict['name'],el_dict['symbol'],el_dict['number'])
+print(hydrogen.name)
 
 # EX06
 # class Element():
