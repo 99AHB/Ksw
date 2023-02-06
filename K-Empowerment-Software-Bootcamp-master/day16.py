@@ -126,6 +126,26 @@ def count_odd_even():
     return odd, even
 
 
+def count_plus_minus():
+    global head, current
+
+    plus, minus, zero = 0, 0, 0
+
+    current = head
+    while True:
+        if current.data > 0:
+            plus = plus + 1
+        elif current.data < 0:
+            minus = minus + 1
+        else:
+            zero = zero + 1
+        if current.link == head:
+            break
+        current = current.link
+
+    return plus, minus, zero
+
+
 def makeSquareNumber(odd, even):
     if odd > even:
         remainder = 1
@@ -133,20 +153,29 @@ def makeSquareNumber(odd, even):
         remainder = 0
 
     current = head
-    while current.link != head:
+    while True:
         if current.data % 2 == remainder:
             current.data = current.data * current.data
+        if current.link == head:
+            break
         current = current.link
-    current.data = current.data * current.data
+
+
+def makeSignToggle():
+    current = head
+    while True:
+        current.data = current.data * -1
+        if current.link == head:
+            break
+        current = current.link
 
 
 head, current, pre = None, None, None
 data_array = list()
 
 if __name__ == "__main__":
-    # odd_even = count_odd_even()  # False 리턴
     for _ in range(7):
-        data_array.append(random.randint(1, 10))
+        data_array.append(random.randint(-10, 10))
 
     node = Node(data_array[0])
     head = node
@@ -159,7 +188,11 @@ if __name__ == "__main__":
         node.link = head
 
     print_nodes(head)
-    odd_even = count_odd_even()
-    print(f'Odd Number : {odd_even[0]}, Even Number {odd_even[1]}')
-    makeSquareNumber(odd_even[0], odd_even[1])
+    # odd_even = count_odd_even()
+    # print(f'Odd Number : {odd_even[0]}, Even Number {odd_even[1]}')
+    # makeSquareNumber(odd_even[0], odd_even[1])
+    plus_minus_zero = count_plus_minus()
+    print(f'+ : {plus_minus_zero[0]}, - : {plus_minus_zero[1]}, 0 : {plus_minus_zero[2]}')
+    # makeSquareNumber(odd_even[0], odd_even[1])
+    makeSignToggle()
     print_nodes(head)
