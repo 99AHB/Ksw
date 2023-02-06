@@ -7,12 +7,12 @@ def is_stack_full():
 
 def is_stack_empty():
     global SIZE, stack, top
-    if top >= SIZE - 1:
+    if top == -1:
         return True
     return False
 
 
-def push():
+def push(data):
     global SIZE, stack, top
     if is_stack_full():
         print("Stack is FULL!")
@@ -24,17 +24,18 @@ def push():
 def pop():
     global SIZE, stack, top
     if is_stack_empty():
-        print("Stack ifs EMPTY~")
+        print("Stack is EMPTY~")
         return
     temp = stack[top]
     stack[top] = None
     top = top - 1
     return temp
 
+
 def peek():
     global SIZE, stack, top
     if is_stack_empty():
-        print("Stack ifs EMPTY~")
+        print("Stack is EMPTY~")
         return None
     return stack[top]
 
@@ -45,24 +46,23 @@ top = -1
 
 
 if __name__ == "__main__":
-        select = input("삽입(I)/추출(E)/확인(V)/종료(X) 중 하나를 선택 ==> ")
+    while True:
+        menu = input("Insert(I)/Extract(E)/Verify(V)/eXit(X) : ")
+        if menu == 'X' or menu == 'x':
+            break
+        elif menu == 'I' or menu == 'i':
+            data = input("Input Data : ")
+            push(data)
+            print("Stack Status : ", stack)
+        elif menu == 'E' or menu == 'e':
+            data = pop()
+            print("Extrated Data : ", data)
+            print("Stack Status : ", stack)
+        elif menu == 'V' or menu == 'v':
+            data = peek()
+            print("Check Data : ", data)
+            print("Stack Status : ", stack)
+        else:
+            print("Input mismatch")
 
-        while (select != 'X' and select != 'x'):
-            if select == 'I' or select == 'i':
-                data = input("입력할 데이터 ==> ")
-                push()
-                print("스택 상태 : ", stack)
-            elif select == 'E' or select == 'e':
-                data = pop()
-                print("추출된 데이터 ==> ", data)
-                print("스택 상태 : ", stack)
-            elif select == 'V' or select == 'v':
-                data = peek()
-                print("확인된 데이터 ==> ", data)
-                print("스택 상태 : ", stack)
-            else:
-                print("입력이 잘못됨")
-
-            select = input("삽입(I)/추출(E)/확인(V)/종료(X) 중 하나를 선택 ==> ")
-
-        print("프로그램 종료!")
+    print("Program End")
