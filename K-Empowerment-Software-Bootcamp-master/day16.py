@@ -103,12 +103,15 @@ def is_find(find_data):
 
     return False
 
+
 def count_odd_even():
-    global  head, current, pre
+    global head, current
 
     even, odd = 0, 0
-    if head == None:
-        return False
+
+    # SRP 위배
+    # if head == None:
+    #     return False
 
     current = head
     while True:
@@ -122,27 +125,29 @@ def count_odd_even():
 
     return odd, even
 
-def makeMinusNumber(odd,even):
+
+def makeSquareNumber(odd, even):
     if odd > even:
         remainder = 1
     else:
         remainder = 0
 
     current = head
-    while True:
+    while current.link != head:
         if current.data % 2 == remainder:
-            current.data == current
-        if current.link % 2
-
+            current.data = current.data * current.data
+        current = current.link
+    current.data = current.data * current.data
 
 
 head, current, pre = None, None, None
-data_array = ["피카츄", "라이츄", "꼬부기", "파이리", "이상해"]
-
+data_array = list()
 
 if __name__ == "__main__":
+    # odd_even = count_odd_even()  # False 리턴
     for _ in range(7):
-        data_array.append(random.randint(1,100))
+        data_array.append(random.randint(1, 10))
+
     node = Node(data_array[0])
     head = node
     node.link = head
@@ -154,8 +159,7 @@ if __name__ == "__main__":
         node.link = head
 
     print_nodes(head)
-
-    o, e = count_odd_even()
-    print(f'Odd Number : {0}, Even Number {e}')
-    makeMinusNumber(0, e)
+    odd_even = count_odd_even()
+    print(f'Odd Number : {odd_even[0]}, Even Number {odd_even[1]}')
+    makeSquareNumber(odd_even[0], odd_even[1])
     print_nodes(head)
