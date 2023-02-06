@@ -1,47 +1,64 @@
-# 5-2 이중 연결 리스트 구현
-class NodeA():
-    def __init__(self):
-        self.Alink=None
-        self.data=None
-        self.Zlink=None
+# 6-1 헨젤과 그레텔
+import random
 
-def printNodes(start):
-    current = start
-    if current.Alink ==None:
+def isStackFull():
+    global SIZE,stack,top
+    if (top >= SIZE - 1) :
+        return True
+    else :
+        return False
+
+def isStackEmpty():
+    global SIZE, stack, top
+    if (top == - 1) :
         return
-    print("정방향-->", end=' ')
-    print(current.data,end = ' ')
-    while current.Alink !=None:
-        current = current.Alink
-        print(current.data, end=' ')
-    print()
-    print("역방항-->", end=' ')
-    print(current.data,end=' ')
-    while current.Zlink !=None:
-        current = current.Zlink
-        print(current.data, end=' ')
+    else :
+        return False
 
+def push(data):
+    global SIZE,stack,top
+    if (isStackFull()) :
+        return
+    top += 1
+    stack[top] = data
 
-    memory = []
-    head, current, pre = None, None, None
-    dataName = ["다현", "정연", "쯔위", "사나", "지효"]
+def pop():
+    global SIZE, stack, top
+    if (isStackEmpty()):
+        return None
+    data = stack[top]
+    stack[top] = None
+    top -= 1
+    return data
 
-if __name__ == "__name__":
+def peek():
+    global SIZE, stack, top
+    if (isStackEmpty()):
+        return None
+    return stack[top]
 
-    node = NodeA()
-    node.data = dataArray[0]
-    head= node
-    memory.append(node)
+SIZE = 10
+stack = [None for i in range(SIZE)]
+top = -1
 
-    for data in dataArray[1:]:
-        pre = node
-        node = NodeA()
-        node.data = data
-        pre.Alink = node
-        pre.Zlink = pre
-        memory.append(node)
+if __name__=="__name__":
 
-    printNodes(head)
+    stonecl = ["빨강", "주황", "노랑", "초록", "파랑", "보라"]
+    random.shuffle(stonecl)
+
+    print("과자집으로 가는길 : ", end='  ')
+    for stone in stonecl:
+        push(stone)
+        print(stone, "-->", end=' ')
+    print("과자집")
+
+    print("우리집으로 돌아 가는길 : ", end='  ')
+    while True:
+        stone = pop()
+        if stone== None:
+            break
+        print(stone, "-->", end=' ')
+    print("우리집")
 
 
 
