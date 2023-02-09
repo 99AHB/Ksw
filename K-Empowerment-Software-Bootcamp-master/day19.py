@@ -21,21 +21,10 @@ def BFS(g):
                 queue.append(vertex)
                 visited_array.append(vertex)
 
-
-    # global g, queue, visited_array
-    # current = 0
-    # queue.append(current)
-    # visited_array.append(current)
-
-    # while len(queue) != 0:
-    #     current = queue.popleft()
-    #     for vertex in range(4):
-    #         if g.graph[current][vertex] == 1:
-    #             if vertex in visited_array:
-    #                 pass
-    #             else:
-    #                 queue.append(vertex)
-    #                 visited_array.append(vertex)
+    for i in range(g1.SIZE):
+        for j in range(g1.SIZE):
+            print(g1.graph[i][j], end=' ')
+        print()
 
 g = None
 queue = deque([])
@@ -66,7 +55,8 @@ for i in range(g1.SIZE):
     print()
 
 BFS(g1)
+BFS(g2)
 
 for i in visited_array:
-    print(chr(ord('A')+i), end=' -> ')
+    print(chr(ord('A')+i), end=' ')
 print("END")
