@@ -9,7 +9,15 @@ class Graph:
 
 
 def BFS(g):
-    global queue, visited_array
+    # global queue, visited_array
+    queue = deque([])
+    visited_array = []
+
+    for i in range(g.SIZE):
+        for j in range(g.SIZE):
+            print(g.graph[i][j], end=' ')
+        print()
+
     start = 0
     queue.append(start)
     visited_array.append(start)
@@ -21,14 +29,12 @@ def BFS(g):
                 queue.append(vertex)
                 visited_array.append(vertex)
 
-    for i in range(g1.SIZE):
-        for j in range(g1.SIZE):
-            print(g1.graph[i][j], end=' ')
-        print()
+    for i in visited_array:
+        print(chr(ord('A') + i), end=' -> ')
+    print("END")
+
 
 g = None
-queue = deque([])
-visited_array = []
 A, B, C, D, E, F, G, H, I = 0, 1, 2, 3, 4, 5, 6, 7, 8
 
 g1 = Graph(9)
@@ -48,15 +54,5 @@ g2.graph[B][C] = 1
 g2.graph[C][A] = 1; g2.graph[C][B] = 1; g2.graph[C][D] = 1
 g2.graph[D][A] = 1; g2.graph[C][B] = 1
 
-
-for i in range(g1.SIZE):
-    for j in range(g1.SIZE):
-        print(g1.graph[i][j], end=' ')
-    print()
-
 BFS(g1)
 BFS(g2)
-
-for i in visited_array:
-    print(chr(ord('A')+i), end=' ')
-print("END")
