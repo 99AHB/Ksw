@@ -23,9 +23,6 @@ class Pokemon:
         for i in range(len(self.skills)):
             print(f'{i+1} : {self.skills[i]}')
 
-    #owner = property(get_owner, set_owner)
-        # for skill in self.skills:
-        #     print(f'{skill}')
 
     def attack(self, idx):
         print(f'{self.skills[idx]} 공격 시전!')
